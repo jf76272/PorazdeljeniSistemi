@@ -1,6 +1,8 @@
 package main
 
-import redovalnica "github.com/jf76272/PorazdeljeniSistemi/redovalnica"
+import (
+	redovalnica "github.com/jf76272/PorazdeljeniSistemi/redovalnica"
+)
 
 var r = map[string]redovalnica.Student{
 	"63230069": redovalnica.Student{"Jaka", "Furlan", []int{10, 10, 10, 10, 10, 10, 10, 10}},
@@ -10,5 +12,12 @@ var r = map[string]redovalnica.Student{
 }
 
 func main() {
+	//uspeh
+	redovalnica.DodajOceno(r, "63230069", 10)
+	//neuspeh
+	redovalnica.DodajOceno(r, "64230069", 10)
 
+	redovalnica.IzpisRedovalnice(r)
+
+	redovalnica.IzpisiKoncniUspeh(r)
 }

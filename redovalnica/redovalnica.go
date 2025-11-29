@@ -3,9 +3,9 @@ package redovalnica
 import "fmt"
 
 type Student struct {
-	ime     string
-	priimek string
-	ocene   []int
+	Ime     string
+	Priimek string
+	Ocene   []int
 }
 
 func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int) {
@@ -16,8 +16,8 @@ func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int) {
 
 	student, ok := studenti[vpisnaStevilka]
 	if ok {
-		student.ocene = append(student.ocene, ocena)
-		//JF PAZI, student je v tem primeru kopija, in ko jo spremenis se to ne piše v redovalnico! Zato jo samodejno vpiši!
+		student.Ocene = append(student.Ocene, ocena)
+		//JF PAZI, student je v tem prImeru kopija, in ko jo spremenis se to ne piše v redovalnico! Zato jo samodejno vpiši!
 		studenti[vpisnaStevilka] = student
 		fmt.Printf("Dodal oceno %d k študentu: %s!\n", ocena, vpisnaStevilka)
 	} else {
@@ -29,15 +29,15 @@ func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int) {
 func povprecje(studenti map[string]Student, vpisnaStevilka string) float64 {
 	student, ok := studenti[vpisnaStevilka]
 	if ok {
-		if len(student.ocene) < 6 {
+		if len(student.Ocene) < 6 {
 			return 0
 		}
 		var vsota float64 = 0
-		for _, v := range student.ocene {
+		for _, v := range student.Ocene {
 			vsota += float64(v)
 		}
 
-		return vsota / float64(len(student.ocene))
+		return vsota / float64(len(student.Ocene))
 	} else {
 		return -1
 	}
@@ -46,7 +46,7 @@ func povprecje(studenti map[string]Student, vpisnaStevilka string) float64 {
 func IzpisRedovalnice(studenti map[string]Student) {
 	for k, v := range studenti {
 		fmt.Print(k, " - ")
-		fmt.Println(v.ime, v.priimek, ": ", v.ocene)
+		fmt.Println(v.Ime, v.Priimek, ": ", v.Ocene)
 	}
 }
 
@@ -54,7 +54,7 @@ func IzpisiKoncniUspeh(studenti map[string]Student) {
 	for k, v := range studenti {
 		fmt.Print(k, " -  ")
 		avg := povprecje(studenti, k)
-		fmt.Print(v.ime, v.priimek, " povprečna ocena: ", avg, " -> ")
+		fmt.Print(v.Ime, v.Priimek, " povprečna ocena: ", avg, " -> ")
 
 		switch {
 		case avg >= 9:
